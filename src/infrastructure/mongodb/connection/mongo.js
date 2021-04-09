@@ -3,7 +3,9 @@ const { config } = require("../../../shared/config");
 
 class MongoLib {
   constructor() {
-    const url = `mongodb://${config.DB_USERM}:${config.DB_PASSWORDM}@${config.DB_HOSTM}`;
+    let url = `mongodb://${config.DB_USERM}:${config.DB_PASSWORDM}@${config.DB_HOSTM}`;
+    if(!config.dev)
+       url = `mongodb+srv://${config.DB_USERM}:${config.DB_PASSWORDM}@${config.DB_HOSTM}`;
     this.client = new MongoClient(url, {
       useUnifiedTopology: true,
     });
