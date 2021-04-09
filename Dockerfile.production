@@ -1,0 +1,26 @@
+FROM node:12
+
+RUN useradd --user-group --create-home --shell /bin/false app
+
+# Create app directory
+ENV HOME=/usr/src/app
+RUN mkdir $HOME
+WORKDIR $HOME
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
+RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
+
+# Bundle app source
+COPY . .
+
+EXPOSE 8024
+CMD [ "npm", "run", "start" ]
+
+#CMD [ "npm", "run", "dev" ]
+
