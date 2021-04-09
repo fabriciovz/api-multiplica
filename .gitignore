@@ -1,3 +1,8 @@
 node_modules
 .env
 .idea
+
+deploy
+.skaffold.yaml
+#MAC
+.DS_Store

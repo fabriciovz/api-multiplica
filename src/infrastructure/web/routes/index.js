@@ -12,16 +12,18 @@ const {
   clientErrorHandler,
 } = require("../middlewares/error.middleware");
 
-
 // Swagger set up
 const swaggerSpec = require('../../swagger/swagger.js').spec();
 
-module.exports = function ({ ColorRoutes}) {
+module.exports = function ({ ColorRoutes, HealthRoutes}) {
   const router = Router();
   const apiRoute = Router();
+  const healthRoute = Router();
 
   // middlewares
   apiRoute.use(cors()).use(express.json()).use(compression());
+  healthRoute.use("/health",HealthRoutes);
+
 
   // Routes
   apiRoute.use(
@@ -38,12 +40,6 @@ module.exports = function ({ ColorRoutes}) {
     })
   );
 
-  // //Para el manejo de rutas no establecidas/errores al escribir las rutas
-  // apiRoute.get("*", function (req, res, next) {
-  //   console.log("por aqui");
-  //   next(boom.notFound("Ruta no encontrada"));
-  // });
-
   // error handlers
   apiRoute.use(logErrors);
   apiRoute.use(wrapErrors);
@@ -51,6 +47,13 @@ module.exports = function ({ ColorRoutes}) {
 
   router.use("/api", apiRoute);
 
+  //HealthCheck
+  router.use(healthRoute);
+
+  //Para el manejo de rutas no establecidas/errores al escribir las rutas
+  router.get("*", function (req,res,err) {
+    res.status(404).json("page not found");
+  });
 
   return router;
 };

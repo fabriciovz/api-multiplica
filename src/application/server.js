@@ -13,5 +13,4 @@ class Server {
     return this._config;
   }
 }
-
 module.exports = Server;
