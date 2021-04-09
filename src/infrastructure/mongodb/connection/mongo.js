@@ -28,6 +28,8 @@ class MongoLib {
     });
   }
   getByID(collection, id) {
+    console.log("en la librería mongo")
+    console.log(id)
     return this.connect().then((db) => {
       return db.collection(collection).findOne({ _id: ObjectId(id) });
     });

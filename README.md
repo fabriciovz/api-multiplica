@@ -23,12 +23,12 @@ $ make application-stop
 
 If you want to reset the container:
 ```sh
-$ make application-reset
+$ make api-reset
 ```
 
-If you want to unistall the api:
+If you want to uninstall the api:
 ```sh
-$ make application-uninstall
+$ make api-uninstall
 ```
 
 For more information, please have a look at the Makefile
