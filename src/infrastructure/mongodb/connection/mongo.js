@@ -27,7 +27,7 @@ class MongoLib {
       return db.collection(collection).find(query,paging).toArray();
     });
   }
-  get(collection, id) {
+  getByID(collection, id) {
     return this.connect().then((db) => {
       return db.collection(collection).findOne({ _id: ObjectId(id) });
     });

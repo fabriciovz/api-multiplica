@@ -20,8 +20,8 @@ class BaseUsecase {
       return objectMapper(entity, this.entityToMap);
     });
   }
-  async getOne(id) {
-    const entity = await this._entityRepository.getOne(id);
+  async getByID(id) {
+    const entity = await this._entityRepository.getByID(id);
     if (!entity) return null;
     return objectMapper(entity, this.entityToMap);
   }
