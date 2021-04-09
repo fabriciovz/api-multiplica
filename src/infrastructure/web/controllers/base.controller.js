@@ -22,9 +22,6 @@ class BaseController {
   }
   async getByID(req, res, next) {
     const { id } = req.params;
-    console.log("en el controller getByID");
-    console.log(id);
-    console.log(req.params);
     let record = await this.service.getByID(id);
     if (!record) {
       return res.status(404).send({

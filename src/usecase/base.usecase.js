@@ -21,12 +21,8 @@ class BaseUsecase {
     });
   }
   async getByID(id) {
-    console.log("en el usecase getByID")
     const entity = await this._entityRepository.getByID(id);
-    console.log("rewpuesta de mongo")
-    console.log(entity)
     if (!entity) return null;
-    console.log(entity)
     return objectMapper(entity, this.entityToMap);
   }
 
