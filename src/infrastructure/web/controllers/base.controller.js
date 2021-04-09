@@ -20,9 +20,9 @@ class BaseController {
       message: "Elementos Listados!!!",
     });
   }
-  async getOne(req, res, next) {
+  async getByID(req, res, next) {
     const { id } = req.params;
-    let record = await this.service.getOne(id);
+    let record = await this.service.getByID(id);
     if (!record) {
       return res.status(404).send({
         message: "Elemento no encontrado!!!",

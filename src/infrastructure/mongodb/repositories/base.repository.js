@@ -14,8 +14,8 @@ class BaseRepository {
     return products;
   }
   //Get one element by Id
-  getOne(id) {
-    return this.dbmongo.get(this.entity,id);
+  getByID(id) {
+    return this.dbmongo.getByID(this.entity,id);
   }
   create(entity) {
     return this.dbmongo.create(this.entity, entity);

@@ -1,5 +1,11 @@
 const { Router } = require("express");
 const queryHandler = require("../../middlewares/query.middleware");
+const passport = require("passport");
+
+//Passport JWT Strategy
+const PassportStrategy = require("../../auth/strategies/passport-strategy");
+jwt = new PassportStrategy();
+passport.use(jwt.getJwtStrategy());
 
 /**
  * @swagger
@@ -89,7 +95,7 @@ module.exports = function ({ ColorController }) {
    *         description: Elemento listada
    *
    */
-  router.get("/:id", ColorController.getOne.bind(ColorController));
+  router.get("/:id", ColorController.getByID.bind(ColorController));
   /**
    * @swagger
    * /colores:
@@ -111,7 +117,9 @@ module.exports = function ({ ColorController }) {
    *         description: Elemento creado
    *
    */
-  router.post("/", ColorController.create.bind(ColorController));
+  router.post("/",
+      passport.authenticate("jwt", { session: false }),
+      ColorController.create.bind(ColorController));
   /**
    * @swagger
    * /colores/{id}:
@@ -140,7 +148,9 @@ module.exports = function ({ ColorController }) {
    *         description: Elemento actualizado
    *
    */
-  router.put("/:id", ColorController.update.bind(ColorController));
+  router.put("/:id",
+      passport.authenticate("jwt", { session: false }),
+      ColorController.update.bind(ColorController));
   /**
    * @swagger
    * /colores/{id}:
@@ -162,7 +172,9 @@ module.exports = function ({ ColorController }) {
    *         description: Elemento eliminado
    *
    */
-  router.delete("/:id", ColorController.delete.bind(ColorController));
+  router.delete("/:id",
+      passport.authenticate("jwt", { session: false }),
+      ColorController.delete.bind(ColorController));
 
   return router;
 };
