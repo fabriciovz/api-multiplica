@@ -26,6 +26,7 @@
  *           year: 2000
  */
 let ColorDto = {
+    "_id": "_id",
     "id": "id",
     "name": "name",
     "color": "color",
