@@ -18,6 +18,7 @@ class BaseRepository {
     return this.dbmongo.getByID(this.entity,id);
   }
   create(entity) {
+    delete entity._id;
     return this.dbmongo.create(this.entity, entity);
   }
   //Update an element by Id
