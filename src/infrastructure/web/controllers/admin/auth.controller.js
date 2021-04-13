@@ -25,16 +25,22 @@ class AuthController {
           }
           // por estandard el username se almacena en sub en el caso del payload jwt
           // Se incorpora la información del usuario
-          const payload = { sub: user.username, email: user.email, id:user.id };
-          //Creación de token
-          const token = jwt.sign(payload, config.AUTH_JWT_SECRET, {
-            algorithm: config.AUTH_JWT_ALGORITHM,
-            expiresIn: config.AUTH_JWT_LIFETIME,
-          });
+          if(user.username!=undefined) {
+            const payload = {sub: user.username, email: user.email, id: user.id};
+            //Creación de token
+            const token = jwt.sign(payload, config.AUTH_JWT_SECRET, {
+              algorithm: config.AUTH_JWT_ALGORITHM,
+              expiresIn: config.AUTH_JWT_LIFETIME,
+            });
+            return res.status(200).json({access_token: token});
+          }
+          else {
+            next(boom.unauthorized());
+          }
 
-          return res.status(200).json({ access_token: token });
         });
       } catch (error) {
+        console.log("en el catch del error de auth controller");
         next(error);
       }
     })(req, res, next);

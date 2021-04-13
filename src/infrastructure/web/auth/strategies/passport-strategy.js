@@ -26,13 +26,11 @@ class PassportStrategy {
                             return cb(boom.unauthorized(), false);
                           }
                           if (!(await bcrypt.compare(password, user.password))) {
-                            return cb(boom.unauthorized(), false);
+                              return cb(boom.unauthorized(), false);
                           }
-                          console.log("luego de la validación");
                           return cb(null, user);
                         })
                         .catch((err) => {
-                          console.log(err);
                           cb(error);
                         });
         } catch (error) {
