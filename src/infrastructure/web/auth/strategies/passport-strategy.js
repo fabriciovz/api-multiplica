@@ -31,7 +31,7 @@ class PassportStrategy {
                           return cb(null, user);
                         })
                         .catch((err) => {
-                          cb(error);
+                          cb(err);
                         });
         } catch (error) {
           return cb(error);
