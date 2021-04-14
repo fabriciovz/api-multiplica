@@ -23,9 +23,9 @@ $ make application-stop
 
 If you want to check the endpoints with postman, you can download the environment and the collection file:
 
-https://github.com/fabriciovz/api-multiplica/blob/master/src/utils/postman/collection.json
+https://github.com/fabriciovz/api-multiplica/blob/master/src/shared/postman/collection.json
 
-https://github.com/fabriciovz/api-multiplica/blob/master/src/utils/postman/environment.json
+https://github.com/fabriciovz/api-multiplica/blob/master/src/shared/postman/environment.json
 
 ### Something went wrong?
 
