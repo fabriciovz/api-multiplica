@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "3baecbcd-013e-444d-b7be-840f6c5f58df",
+		"name": "Multiplica Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetOne",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_full}}/api/colores/6070d45e792fb30015cf0dbc",
+					"host": [
+						"{{url_full}}"
+					],
+					"path": [
+						"api",
+						"colores",
+						"6070d45e792fb30015cf0dbc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ReadAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_full}}/api/colores",
+					"host": [
+						"{{url_full}}"
+					],
+					"path": [
+						"api",
+						"colores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ReadPaging",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_full}}/api/colores?page=1&sort=id&dir=1&limit=6&soft=true",
+					"host": [
+						"{{url_full}}"
+					],
+					"path": [
+						"api",
+						"colores"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "sort",
+							"value": "id"
+						},
+						{
+							"key": "dir",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "6"
+						},
+						{
+							"key": "soft",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"_id\": \"\",\n  \"id\": 12,\n  \"name\": \"Sand Dollar 12\",\n  \"color\": \"#581f32\",\n  \"pantone\": \"13-1112\",\n  \"year\": 2021\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_full}}/api/colores",
+					"host": [
+						"{{url_full}}"
+					],
+					"path": [
+						"api",
+						"colores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1,\n  \"name\": \"Sand Dollar 66666\",\n  \"color\": \"#DECDBE\",\n  \"pantone\": \"13-1106\",\n  \"year\": 2021\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_full}}/api/colores/606f52919b74af2d9a4ca88a",
+					"host": [
+						"{{url_full}}"
+					],
+					"path": [
+						"api",
+						"colores",
+						"606f52919b74af2d9a4ca88a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_full}}/health",
+					"host": [
+						"{{url_full}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteOne",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url_full}}/api/colores/606fcce9e2ff06f964660964",
+					"host": [
+						"{{url_full}}"
+					],
+					"path": [
+						"api",
+						"colores",
+						"606fcce9e2ff06f964660964"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\", \n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_full}}/api/auth/token",
+					"host": [
+						"{{url_full}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
